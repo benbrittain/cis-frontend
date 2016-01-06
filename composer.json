@@ -1,0 +1,26 @@
+{
+  "name": "ben/cis-frontend",
+  "authors": [
+    {
+      "name": "Ben Brittain",
+      "email": "ben@brittain.org"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/EVODelavega/freshdesk-rest.git"
+    }
+  ],
+  "require": {
+    "EVODelavega/freshdesk-rest": "dev-master"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "Freshdesk\\Config\\Composer::postUpdate"
+    ],
+    "post-update-cmd": [
+      "Freshdesk\\Config\\Composer::postUpdate"
+    ]
+  }
+}

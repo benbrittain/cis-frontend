@@ -1,5 +1,7 @@
 <?php
 require 'vendor/autoload.php';
+include 'config.php';
+
 use Freshdesk\Config\Connection,
   Freshdesk\Rest,
   Freshdesk\Ticket,
@@ -7,7 +9,7 @@ use Freshdesk\Config\Connection,
   Freshdesk\Model\Ticket as TicketM,
   Freshdesk\Tool\ModelGenerator;
 
-//$url = 'https://APIKEY_LEAVETHEX:X@chester.freshdesk.com';
+$url = 'https://' . $KEY . ':X@chester.freshdesk.com';
 $conf = new Connection($url);
 
 //basic/general rest calls

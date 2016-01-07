@@ -22,10 +22,22 @@ $t = new Ticket($conf);
 //create new ticket
 $model = new TicketM(
     array(
-        'description'   => 'Ignore this ticket, it is a test',
-        'subject'       => 'API-test',
-        'email'         => 'foo@bar.com'
+        'description'   => 'Operating System: '.$_POST['os']."\n"
+                           .'Location: '.$_POST['location']."\n\n"
+                           .$_POST['description'],
+        'subject'       => $_POST['subject'],
+        'email'         => $_POST['email']
     )
 );
 //create new ticket, basic example
 $t->createNewTicket($model);
+?>
+
+<html>
+  <head>
+    <title>RIT CIS Ticketing System</title>
+  </head>
+  <body>
+    <p>Thanks for the ticket.</p>
+ </body>
+</html>

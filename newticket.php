@@ -31,6 +31,9 @@ $model = new TicketM(
 );
 //create new ticket, basic example
 $t->createNewTicket($model);
+
+//Redirect to initial page
+// header( "refresh:2;url=index.php" );
 ?>
 
 <html>

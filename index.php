@@ -13,7 +13,7 @@
         <div class="col-md-6 col-md-offset-3" style="background-color: rgb(243,110,33);color: white;margin-top: 50pt;">
 
           <h1>Submit a New Ticket</h1>
-          <form id="ticket-form">
+          <form action="newticket.php" id="ticket-form">
             <div class="form-group">
               <label>Email address</label>
               <input type="email" class="form-control" name="email" placeholder="Email">
@@ -73,20 +73,28 @@
 
           <script type="text/javascript">
             $(document).ready(function(){
-              $("#submit").click(function(){
-                console.log("Did I get here?")
-              // $.ajax({
-              //   type: 'POST',
-              //   url: "newticket.php",
-              //   data: $('#ticket-form').serialize(),
-              //   success: function(response) {
-              //     console.log("Submitted ticket!");
-              //     $('#successModal').modal(show);
-              //   },
-              //   error: function() {
-              //     alert("There was an error submitting the ticket");
-              //   }
-              //  });
+              $( "#ticket-form" ).submit(function( event ) {
+                event.preventDefault();
+
+                var $form = $( this ),
+                     email = $form.find( "input[name='email']" ).val(),
+                     subject = $form.find( "input[name='subject']" ).val(),
+                     description= $form.find( "input[name='description']" ).val(),
+                     loc = $form.find( "input[name='location']" ).val(),
+                     url = $form.attr( "action" );
+
+                var posting = $.post( url, {
+                  'location': loc,
+                  'subject': subject,
+                  'email': email,
+                  'description': description
+                } );
+
+                posting.done(function( data ) {
+                  console.log("posted!");
+//                  var content = $( data ).find( "#content" );
+//                  $( "#result" ).empty().append( content );
+                });
              });
            });
           </script>

@@ -7,10 +7,41 @@
   </head>
   <body bgcolor="F8F7ED">
     <?php include('http://rit.edu/framework/v0/rit-identitybar.html'); ?>
+    Current Open Tickets:
+    <?php
+      require 'vendor/autoload.php';
+      include 'config.php';
+      use Freshdesk\Config\Connection,
+        Freshdesk\Rest,
+        Freshdesk\Ticket,
+        Freshdesk\Model\Contact,
+        Freshdesk\Model\Ticket as TicketM,
+        Freshdesk\Tool\ModelGenerator;
+
+      $url = 'https://' . $KEY . ':X@chester.freshdesk.com';
+      $conf = new Connection($url);
+      $fd = new Rest($conf);
+      $tckts = $fd->getAllTickets(0, 'new_and_my_open');
+      echo('<table class="table table-bordered">');
+      echo('<tr>');
+      echo('<th> Name </th>');
+      echo('<th> Problem </th>');
+      echo('</tr>');
+      foreach ($tckts as &$tckt) {
+        $requester = $tckt->requester_name;
+        $desc = $tckt->description;
+        $title = $tckt->subject;
+        echo('<tr>');
+        echo('<td>' . $requester . '</td>');
+        echo('<td>' . $title . '</td>');
+        echo('</tr>');
+      }
+      echo('</table>');
+    ?>
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3 bg-primary">
-          <h1>Submit a Ticket</h1>
+          <h1>Submit a New Ticket</h1>
           <form action="newticket.php" method="post">
             <div class="form-group">
               <label>Email address</label>

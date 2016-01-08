@@ -28,7 +28,7 @@
             $tckts = $fd->getAllTickets(0, 'new_and_my_open');
             echo('<table class="table table-striped table-bordered" style="background-color: #FFFFFF">');
             echo('<tr>');
-            echo('<th> Name </th>');
+            echo('<th> Requester </th>');
             echo('<th> Problem </th>');
             echo('</tr>');
             foreach ($tckts as &$tckt) {

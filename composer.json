@@ -9,7 +9,7 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/EVODelavega/freshdesk-rest.git"
+      "url": "https://github.com/cavedweller/freshdesk-rest.git"
     }
   ],
   "require": {

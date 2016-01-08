@@ -50,7 +50,7 @@
           </form>
 
           <!-- Modal -->
-          <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color: black;">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -59,6 +59,23 @@
                 </div>
                 <div class="modal-body">
                   The ticket has successfully been submitted!
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="failureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="color: black;">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Ticket not Submitted</h4>
+                </div>
+                <div class="modal-body">
+                  There seems to be an issue. Please email help@cis.rit.edu.
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -91,9 +108,10 @@
                 } );
 
                 posting.done(function( data ) {
-                  console.log("posted!");
-//                  var content = $( data ).find( "#content" );
-//                  $( "#result" ).empty().append( content );
+                  $('#successModal').modal('show');
+                });
+                posting.fail(function ( data ) {
+                  $('#failureModal').modal('show');
                 });
              });
            });
